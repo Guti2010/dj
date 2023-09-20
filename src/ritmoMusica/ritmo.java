@@ -1,28 +1,30 @@
 package ritmoMusica;
 
-import generoMusica.Genero;
 import letraMusica.Letra;
+import generoMusica.*;
 public abstract class ritmo {
-	
-	abstract Genero crearRitmo();
-	abstract void combinarRitmos();
-	abstract void adaptarLetra(Letra pLetra);
+    public abstract String crearRitmoBase(String[] pGeneros);
+    public abstract String modificarConLetra(String[] pGeneros);
 }
 
-class ritmoFinal extends ritmo{
-	private Genero generos;
-	private Letra letra;
-	Genero crearRitmo() { 
-		System.out.print("");
-		return generos;
+public class RitmoFinal extends ritmo {
+    private generoDefinitivo generoFinal;
+    private Letra Lirica;  
+    private String Ritmo;
 
-	}
-	void combinarRitmos() {
-		System.out.print("Ritmo combinado con todos géneros");
-	}
-	
-	void adaptarLetra(Letra pletra) {
-		System.out.print("Ritmo adaptado a letra");
-	}
-	
+    public String crearRitmoBase(String[] pGeneros) {
+        
+        Ritmo = "Ritmo base " + generoFinal.combinarCaracterísticaGeneros(pGeneros)[0]; // crear la base
+
+        for (int i = 1; i < pGeneros.length; i++) { // ir modificando letra segun generos
+            Ritmo += generoFinal.combinarCaracterísticaGeneros(pGeneros)[i];
+        }
+
+        return Ritmo;
+    }
+    
+    public String modificarConLetra(String[] pGeneros) {
+    	Ritmo += Lirica.crearLetraBase(pGeneros);
+    	return Ritmo;	
+    }
 }

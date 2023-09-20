@@ -1,26 +1,20 @@
 package generoMusica;
 
 public abstract class Genero {
-	String[] generos;
-	
-	abstract String definirCaracterísticasCancion();
-	abstract String[] getGeneros();
+    public String descripcionGenero;
+    abstract String definirCaracterísticasGenero(String pGenero);
+    abstract String definirGeneroPrincipal(String pPrimerGenero);
 }
 
-class generoMusical extends Genero{
-	private String[] generos;
-	
-	String[] getGeneros(){
-		return generos;
-	}
-	
-	String definirCaracterísticasCancion() {
-		
-		System.out.print("Características de generos bombinadas");
-		return "Caracteristicas";
-		
-	}
-	
-	
-	
+// En el mismo archivo o en otro archivo dentro del mismo paquete
+class generoMusical extends Genero {
+    String definirCaracterísticasGenero(String pGenero) {
+        descripcionGenero = "Investigacion de " + pGenero;
+        return descripcionGenero;
+    }
+
+    String definirGeneroPrincipal(String pPrimerGenero) {
+        descripcionGenero = "Investigacion de " + pPrimerGenero;
+        return descripcionGenero;
+    }
 }

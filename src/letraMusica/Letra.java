@@ -1,19 +1,22 @@
 package letraMusica;
-import generoMusica.Genero;
 
+import generoMusica.*;
 public abstract class Letra {
-	
-	abstract String crearLetra(String generos,String tema);
-	abstract void modificarConGeneros();
+    public abstract String crearLetraBase(String[] pGeneros,String Tema);
 }
- class LetraFinal extends Letra{
-	 private Genero genero;
-	 String crearLetra(String caracteristicas,String tema){
-		 return "Letra con los generos";
-	 }
-	 void modificarConGeneros() {
-		 String caracteristicasCancion=genero.definirCaracterísticasCancion();
-		 // letra modificada según ritmos, según cual se dicen una u otras cosas
-	 }
-	 
- }
+
+public class LetraFinal extends Letra {
+    private generoDefinitivo generoFinal;
+    private String Lirica;  
+
+    public String crearLetraBase(String[] pGeneros,String Tema) {
+        generoFinal = new generoDefinitivo(); // Crear una instancia de generoDefinitivo
+        Lirica = "Letra base de "+ Tema + generoFinal.combinarCaracterísticaGeneros(pGeneros)[0]; // crear la base
+
+        for (int i = 1; i < pGeneros.length; i++) { // ir modificando letra segun generos
+            Lirica += generoFinal.combinarCaracterísticaGeneros(pGeneros)[i];
+        }
+
+        return Lirica;
+    }
+}
